@@ -8,6 +8,10 @@
 <meta property="og:title" content="Jonathan James Duah — Graphic &amp; Product Designer"/>
 <meta property="og:description" content="Selected work in graphic design, UI/UX and product development."/>
 <meta property="og:type" content="website"/>
+<link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
@@ -617,20 +621,55 @@ function wireHover(){
 function wireForm(){
   const form = document.getElementById('inquiry');
   if (!form) return;
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const note = document.getElementById('form-note');
+    const submitBtn = form.querySelector('.submit');
     // honeypot
     if (form.querySelector('[name="website"]').value) { note.textContent = 'Submission blocked.'; return; }
     const name = document.getElementById('f-name').value.trim();
     const email = document.getElementById('f-email').value.trim();
     const type = document.getElementById('f-type').value;
     const msg = document.getElementById('f-msg').value.trim();
-    if (!name || !email || !type || !msg) { note.textContent = 'Please fill in every field.'; note.style.color = 'var(--accent)'; return; }
-    // In production: POST to /api/inquiry (Resend / Formspree / serverless)
-    note.textContent = 'Thanks — your message is on its way. I usually reply within two working days.';
-    note.style.color = '';
-    form.reset();
+    if (!name || !email || !type || !msg) {
+      note.textContent = 'Please fill in every field.';
+      note.style.color = 'var(--accent)';
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '.6';
+    submitBtn.textContent = 'Sending…';
+    note.textContent = '';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/jamesduahjonathan@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          project_type: type,
+          message: msg,
+          _subject: `Portfolio inquiry from ${name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      const data = await res.json();
+      if (data.success === 'true' || data.success === true) {
+        note.textContent = 'Thanks — your message is on its way. I usually reply within two working days.';
+        note.style.color = '';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Send failed');
+      }
+    } catch (err) {
+      note.textContent = 'Something went wrong. Please email me directly at jamesduahjonathan@gmail.com.';
+      note.style.color = 'var(--accent)';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '';
+      submitBtn.textContent = 'Send inquiry';
+    }
   });
 }
 
