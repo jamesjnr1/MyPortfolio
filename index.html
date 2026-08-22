@@ -113,7 +113,7 @@
   .hero-meta strong{display:block;font-family:var(--font-display);font-weight:500;color:var(--fg);font-size:.9375rem;letter-spacing:0;text-transform:none;margin-top:.35rem}
 
   /* ------- featured grid — asymmetric, mixed aspect ratios ------- */
-  .featured-header{display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad-x);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+  .featured-header{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding:0 var(--pad-x);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
   .featured{padding:0 var(--pad-x) clamp(4rem,8vw,6rem);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1rem,1.6vw,1.5rem) clamp(1rem,1.6vw,1.5rem)}
   .work-item{position:relative;display:block;overflow:hidden}
   .work-index{font-family:var(--font-body);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;display:block;margin-bottom:.35rem;transition:color .3s var(--ease)}
@@ -144,7 +144,9 @@
 
   /* ------- work / archive ------- */
   .archive-head{padding:clamp(4rem,10vw,7rem) var(--pad-x) clamp(1.5rem,3vw,2.5rem)}
-  .archive-head .h1{margin:0 0 .5rem}
+  .archive-head .h1{margin:0 0 .75rem;font-size:clamp(2.5rem,5.5vw,4.5rem);letter-spacing:-.03em;line-height:1}
+  .page-kicker{display:flex;justify-content:space-between;align-items:baseline;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;padding-bottom:1rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+  .page-kicker span:first-child{color:var(--accent)}
   .filters{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 var(--pad-x) clamp(2rem,4vw,3rem);align-items:center}
   .filter-label{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin-right:.75rem}
   .chip{font-size:.8125rem;padding:.45rem .9rem;border:1px solid var(--border);border-radius:999px;color:var(--fg-muted);transition:color .25s var(--ease),border-color .25s var(--ease),background-color .3s var(--ease),transform .15s var(--ease);white-space:nowrap}
@@ -202,12 +204,17 @@
   html[data-theme="dark"] .about-portrait img{box-shadow:0 22px 44px -12px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04)}
   @media (max-width:800px){.about-portrait{margin:0 auto;justify-self:center}}
   .about-lead{font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,2.8vw,2.125rem);line-height:1.25;letter-spacing:-.015em;margin:0 0 2rem;max-width:22ch}
-  .about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(3rem,6vw,5rem)}
-  @media (max-width:700px){.about-cols{grid-template-columns:1fr;gap:2.5rem}}
-  .about-cols h3{font-family:var(--font-display);font-weight:500;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin:0 0 1rem}
-  .about-cols ul{list-style:none;padding:0;margin:0;font-size:.9375rem}
-  .about-cols li{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--fg-muted)}
-  .about-cols li:last-child{border-bottom:0}
+  .about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(4rem,7vw,6rem);padding-top:clamp(3rem,5vw,4rem);border-top:1px solid var(--border)}
+  .about-col{padding:0 clamp(1rem,2vw,2rem);border-left:1px solid var(--border);display:flex;flex-direction:column}
+  .about-col:first-child{padding-left:0;border-left:0}
+  .about-col-kicker{display:flex;justify-content:space-between;align-items:baseline;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;font-variant-numeric:tabular-nums;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);color:var(--fg-subtle)}
+  .about-col-kicker span:first-child{color:var(--accent)}
+  .about-col ul{list-style:none;padding:0;margin:0;font-size:.9375rem}
+  .about-col li{padding:.7rem 0;color:var(--fg);font-family:var(--font-display);font-weight:500;letter-spacing:-.005em;transition:color .25s var(--ease)}
+  .about-col li + li{border-top:1px solid var(--border)}
+  .about-col:hover li{color:var(--fg-muted)}
+  .about-col li:hover{color:var(--fg)}
+  @media (max-width:800px){.about-cols{grid-template-columns:1fr;gap:0;padding-top:2rem}.about-col{padding:0 0 2rem 0;border-left:0;border-bottom:1px solid var(--border);margin-bottom:2rem}.about-col:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}}
 
   /* ------- contact ------- */
   .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
@@ -409,8 +416,11 @@ function viewHome(){
   </section>
 
   <div class="featured-header">
-    <span class="meta reveal">Selected work · 2025</span>
-    <a href="#/work" class="nav-link reveal" data-nav>Full archive →</a>
+    <div class="page-kicker reveal" style="flex:1;max-width:none">
+      <span>Selected Work</span>
+      <span>${featured.length.toString().padStart(2,'0')} / ${PROJECTS.length.toString().padStart(2,'0')} · 2025</span>
+    </div>
+    <a href="#/work" class="nav-link reveal" data-nav style="margin-left:2rem;white-space:nowrap">Full archive →</a>
   </div>
   <section class="featured">
     ${featured.map((p, i) => `
@@ -442,8 +452,12 @@ function viewWork(filter='all'){
   const items = filter==='all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(filter));
   return `
   <header class="archive-head">
-    <h1 class="h1 reveal">Work</h1>
-    <p class="lead reveal">A running archive of client and self-initiated projects. Filter by discipline.</p>
+    <div class="page-kicker reveal">
+      <span>Portfolio</span>
+      <span>${PROJECTS.length.toString().padStart(2,'0')} projects</span>
+    </div>
+    <h1 class="h1 reveal">Selected Work.</h1>
+    <p class="lead reveal">A curated archive of client and self-initiated projects.</p>
   </header>
   <div class="filters" role="group" aria-label="Filter by discipline">
     <span class="filter-label">Filter</span>
@@ -509,6 +523,10 @@ function viewProject(slug){
 function viewAbout(){
   return `
   <section class="section container">
+    <div class="page-kicker reveal" style="max-width:none">
+      <span>About</span>
+      <span>03 / 04</span>
+    </div>
     <div class="about-grid">
       <div class="about-portrait reveal">
         <img src="./images/portrait.jpg" alt="Portrait of Jonathan James Duah" loading="lazy"/>
@@ -523,8 +541,8 @@ function viewAbout(){
     </div>
 
     <div class="about-cols reveal">
-      <div>
-        <h3>Services</h3>
+      <div class="about-col">
+        <div class="about-col-kicker"><span>01</span><span>Services</span></div>
         <ul>
           <li>Graphic design</li>
           <li>Poster &amp; event design</li>
@@ -534,8 +552,8 @@ function viewAbout(){
           <li>Social &amp; digital graphics</li>
         </ul>
       </div>
-      <div>
-        <h3>Tools</h3>
+      <div class="about-col">
+        <div class="about-col-kicker"><span>02</span><span>Tools</span></div>
         <ul>
           <li>Figma</li>
           <li>Adobe Photoshop</li>
@@ -545,8 +563,8 @@ function viewAbout(){
           <li>Framer</li>
         </ul>
       </div>
-      <div>
-        <h3>Currently</h3>
+      <div class="about-col">
+        <div class="about-col-kicker"><span>03</span><span>Currently</span></div>
         <ul>
           <li>Open for briefs</li>
           <li>Based in Accra, Ghana</li>
@@ -566,9 +584,13 @@ function viewAbout(){
 function viewContact(){
   return `
   <section class="section container">
+    <div class="page-kicker reveal" style="max-width:none">
+      <span>Get in touch</span>
+      <span>04 / 04</span>
+    </div>
     <div class="contact-wrap">
       <div class="reveal">
-        <h1 class="contact-h">Let's<br/>work together.</h1>
+        <h1 class="contact-h">Let's<br/>work together<span class="accent">.</span></h1>
         <p class="lead" style="margin-bottom:2rem">The best briefs start with a paragraph and a deadline. Send both — or just say hi.</p>
         <a href="mailto:jamesduahjonathan@gmail.com" class="contact-email">jamesduahjonathan@gmail.com</a>
         <div class="socials">
