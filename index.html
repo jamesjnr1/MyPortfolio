@@ -45,6 +45,11 @@
   a{color:inherit;text-decoration:none}
   button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
   ::selection{background:var(--accent);color:#fff}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;border:2px solid transparent;background-clip:content-box;transition:background .3s var(--ease)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--fg-subtle);background-clip:content-box;border:2px solid transparent}
+  html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 
   /* ------- type ------- */
@@ -60,7 +65,8 @@
   .hero-meta strong,.work-cat,.proj-meta dd{font-variant-numeric:tabular-nums}
 
   /* ------- nav ------- */
-  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);z-index:50;background:color-mix(in oklab, var(--bg) 82%, transparent);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);z-index:50;background:color-mix(in oklab, var(--bg) 82%, transparent);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid transparent;transform:translateY(0);transition:border-color .3s var(--ease),transform .45s var(--ease),background .35s var(--ease)}
+  .nav.hidden{transform:translateY(-100%)}
   .nav.scrolled{border-bottom-color:var(--border)}
   .wordmark{font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:.5rem}
   .wordmark::before{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%;transition:transform .4s var(--ease)}
@@ -69,9 +75,10 @@
   .nav-link{font-size:.8125rem;font-weight:500;letter-spacing:.02em;position:relative;padding:.35rem 0}
   .nav-link::after{content:"";position:absolute;left:0;right:0;bottom:.15rem;height:1px;background:var(--fg);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
   .nav-link:hover::after,.nav-link[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
-  .theme-toggle{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;transition:border-color .2s var(--ease),transform .3s var(--ease)}
-  .theme-toggle:hover{border-color:var(--fg)}
-  .theme-toggle svg{width:14px;height:14px}
+  .theme-toggle{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;transition:border-color .2s var(--ease),background .25s var(--ease)}
+  .theme-toggle:hover{border-color:var(--fg);background:var(--bg-elev)}
+  .theme-toggle svg{width:14px;height:14px;transition:transform .5s var(--ease)}
+  .theme-toggle.spin svg{transform:rotate(360deg)}
   html[data-theme="light"] .icon-sun{display:none}
   html[data-theme="dark"] .icon-moon{display:none}
 
@@ -109,6 +116,8 @@
   .featured-header{display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad-x);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
   .featured{padding:0 var(--pad-x) clamp(4rem,8vw,6rem);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1rem,1.6vw,1.5rem) clamp(1rem,1.6vw,1.5rem)}
   .work-item{position:relative;display:block;overflow:hidden}
+  .work-index{font-family:var(--font-body);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;display:block;margin-bottom:.35rem;transition:color .3s var(--ease)}
+  .work-item:hover .work-index{color:var(--accent)}
   .work-cover{position:relative;overflow:hidden;background:var(--bg-elev);border-radius:4px;border:1px solid var(--border);transition:border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--ease)}
   .work-item:hover .work-cover{border-color:transparent;box-shadow:0 20px 50px -20px rgba(0,0,0,.18),0 8px 20px -12px rgba(0,0,0,.08);transform:translateY(-4px)}
   html[data-theme="dark"] .work-item:hover .work-cover{box-shadow:0 20px 50px -18px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06)}
@@ -149,15 +158,21 @@
 
   /* ------- project detail ------- */
   .proj-hero{padding:clamp(3rem,7vw,5rem) var(--pad-x) 0}
-  .proj-back{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem}
+  .proj-back{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem;transition:color .25s var(--ease)}
   .proj-back:hover{color:var(--fg)}
+  .proj-kicker{display:flex;justify-content:space-between;align-items:center;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;padding-bottom:1.25rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .proj-kicker span:first-child{color:var(--accent)}
   .proj-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(2.25rem,5.5vw,4.5rem);margin:0 0 1rem;max-width:16ch}
   .proj-lead{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;color:var(--fg-muted);max-width:52ch;margin:0 0 clamp(2.5rem,5vw,4rem)}
   .proj-cover{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elev);border-radius:2px}
-  .proj-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:clamp(3rem,6vw,5rem) var(--pad-x);border-bottom:1px solid var(--border)}
-  .proj-meta dt{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin-bottom:.5rem;font-weight:500}
-  .proj-meta dd{margin:0;font-family:var(--font-display);font-weight:500;font-size:.9375rem}
-  @media (max-width:700px){.proj-meta{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+  .proj-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:clamp(3rem,6vw,5rem) var(--pad-x);border-bottom:1px solid var(--border)}
+  .proj-meta > div{padding:0 1.5rem;border-left:1px solid var(--border)}
+  .proj-meta > div:first-child{padding-left:0;border-left:0}
+  .proj-meta dt{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);margin-bottom:.6rem;font-weight:500}
+  .proj-meta dd{margin:0;font-family:var(--font-display);font-weight:500;font-size:.9375rem;line-height:1.35}
+  @media (max-width:700px){.proj-meta{grid-template-columns:repeat(2,1fr);gap:2rem 0}.proj-meta > div{padding:0 1.25rem}.proj-meta > div:nth-child(3){padding-left:0;border-left:0}}
+  .prose-lead{font-size:1.125rem;line-height:1.7;color:var(--fg)}
+  .prose-lead::first-letter{font-family:var(--font-display);font-weight:600;font-size:3.5em;line-height:1;float:left;margin:.05em .1em 0 -.05em;color:var(--fg)}
   .proj-body{padding:clamp(4rem,8vw,6rem) var(--pad-x);display:grid;grid-template-columns:1fr;gap:clamp(3rem,6vw,5rem)}
   .proj-block{max-width:1200px;margin:0 auto;width:100%}
   .proj-block.text{max-width:640px}
@@ -218,10 +233,20 @@
   .form-note{font-size:.75rem;color:var(--fg-subtle);margin-top:.5rem}
 
   /* ------- footer ------- */
-  footer{padding:clamp(2rem,4vw,3rem) var(--pad-x);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted)}
-  footer a:hover{color:var(--fg)}
-  .footer-socials{display:flex;gap:1.25rem}
-  .footer-socials a{transition:color .2s var(--ease)}
+  footer{border-top:1px solid var(--border);color:var(--fg-muted);font-size:.8125rem;line-height:1.55}
+  .footer-inner{padding:clamp(3rem,6vw,5rem) var(--pad-x) clamp(2.5rem,4vw,3.5rem);display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(2rem,4vw,4rem)}
+  @media (max-width:900px){.footer-inner{grid-template-columns:1fr 1fr;gap:2.5rem}}
+  @media (max-width:520px){.footer-inner{grid-template-columns:1fr;gap:2rem}}
+  .footer-col{display:flex;flex-direction:column;gap:.5rem}
+  .footer-brand{font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:-.01em;color:var(--fg);margin-bottom:.35rem}
+  .footer-tag{margin:0;max-width:32ch;color:var(--fg-muted)}
+  .footer-label{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:.4rem}
+  .footer-col a{transition:color .25s var(--ease)}
+  .footer-col a:hover{color:var(--fg)}
+  .footer-meta{color:var(--fg-muted)}
+  .footer-base{padding:1.5rem var(--pad-x);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.6875rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);font-variant-numeric:tabular-nums}
+  .footer-top{background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;transition:color .25s var(--ease)}
+  .footer-top:hover{color:var(--fg)}
 
   /* ------- scroll reveal ------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -236,18 +261,6 @@
   .work-title{transition:transform .3s var(--ease)}
   .work-title::after{content:"→";display:inline-block;margin-left:.4rem;opacity:0;transform:translateX(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease);color:var(--fg-muted)}
   .work-item:hover .work-title::after,.work-item:focus-visible .work-title::after{opacity:1;transform:translateX(0)}
-
-  /* ------- follow-dot cursor ------- */
-  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:100;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),background .3s var(--ease),border .3s var(--ease),opacity .2s var(--ease);will-change:transform}
-  .cursor-dot.visible{opacity:1}
-  .cursor-dot.hover{width:40px;height:40px;background:transparent;border:1px solid #fff}
-  @media (hover:none),(prefers-reduced-motion:reduce){.cursor-dot{display:none}}
-
-  /* ------- cursor dot ------- */
-  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;background:#fff;border-radius:50%;pointer-events:none;z-index:200;mix-blend-mode:difference;transform:translate3d(-50%,-50%,0);transition:width .3s var(--ease),height .3s var(--ease);will-change:transform;opacity:0}
-  .cursor-dot.ready{opacity:1}
-  .cursor-dot.hover{width:28px;height:28px}
-  @media (hover:none){.cursor-dot{display:none}}
 
   /* ------- placeholder art system ------- */
   .art{--c1:#111;--c2:#eee;--c3:#FF4500;position:relative;width:100%;height:100%;overflow:hidden;background:var(--c2);color:var(--c1);font-family:var(--font-display);isolation:isolate}
@@ -316,15 +329,34 @@
 
 <main id="view" aria-live="polite"></main>
 
-<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-
 <footer>
-  <span>© 2026 Jonathan James Duah</span>
-  <div class="footer-socials">
-    <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
+  <div class="footer-inner">
+    <div class="footer-col footer-col-wide">
+      <span class="footer-brand">Jonathan James Duah</span>
+      <p class="footer-tag">Graphic design, UI/UX and product development from Accra, Ghana.</p>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Reach out</span>
+      <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a>
+      <a href="tel:+233547955730">+233 54 795 5730</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Elsewhere</span>
+      <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/233547955730" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-label">Colophon</span>
+      <span class="footer-meta">Set in Poppins &amp; Inter</span>
+      <span class="footer-meta">Built by hand, 2026</span>
+    </div>
   </div>
-  <span>Accra, Ghana &nbsp;·&nbsp; <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a></span>
+  <div class="footer-base">
+    <span>© 2026 Jonathan James Duah</span>
+    <span>Accra, Ghana</span>
+    <button class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top ↑</button>
+  </div>
 </footer>
 
 <script>
@@ -381,11 +413,14 @@ function viewHome(){
     <a href="#/work" class="nav-link reveal" data-nav>Full archive →</a>
   </div>
   <section class="featured">
-    ${featured.map(p => `
+    ${featured.map((p, i) => `
       <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <span class="work-title">${p.title.split(' — ')[0]}</span>
+          <div>
+            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(featured.length).padStart(2,'0')}</span>
+            <span class="work-title">${p.title.split(' — ')[0]}</span>
+          </div>
           <span class="work-cat">${p.categories[0]}</span>
         </div>
       </a>`).join('')}
@@ -415,11 +450,14 @@ function viewWork(filter='all'){
     ${CATEGORIES.map(c => `<button class="chip" data-filter="${c}" aria-pressed="${c===filter}">${c[0].toUpperCase()+c.slice(1)}</button>`).join('')}
   </div>
   <section class="archive" id="archive">
-    ${items.map(p => `
+    ${items.map((p, i) => `
       <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <span class="work-title">${p.title.split(' — ')[0]}</span>
+          <div>
+            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span>
+            <span class="work-title">${p.title.split(' — ')[0]}</span>
+          </div>
           <span class="work-cat">${p.year} · ${p.categories.join(', ')}</span>
         </div>
       </a>`).join('')}
@@ -436,6 +474,10 @@ function viewProject(slug){
   <article>
     <header class="proj-hero">
       <a href="#/work" class="proj-back" data-nav>← All work</a>
+      <div class="proj-kicker reveal">
+        <span>Case study</span>
+        <span>${String(i+1).padStart(2,'0')} / ${String(PROJECTS.length).padStart(2,'0')}</span>
+      </div>
       <h1 class="proj-title reveal">${p.title}</h1>
       <p class="proj-lead reveal">${p.summary}</p>
       <div class="proj-cover reveal" style="aspect-ratio:auto;max-height:80vh;display:flex;justify-content:center">${art(p,'contain')}</div>
@@ -448,7 +490,7 @@ function viewProject(slug){
     </dl>
     <div class="proj-body">
       <div class="proj-block text reveal">
-        <p class="prose">${p.body}</p>
+        <p class="prose prose-lead">${p.body}</p>
       </div>
     </div>
     <nav class="proj-nav" aria-label="Project navigation">
@@ -615,6 +657,8 @@ themeBtn.addEventListener('click', () => {
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
+  themeBtn.classList.add('spin');
+  setTimeout(() => themeBtn.classList.remove('spin'), 500);
 });
 
 /* ---------- scroll reveal ---------- */
@@ -633,10 +677,24 @@ function wireReveal(){
   els.forEach(el => io.observe(el));
 }
 
-/* ---------- nav shadow on scroll ---------- */
+/* ---------- nav shadow + hide on scroll ---------- */
 const nav = document.getElementById('nav');
+let lastY = 0, ticking = false;
+function onScroll(){
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 8);
+  if (y < 80){
+    nav.classList.remove('hidden');
+  } else if (y - lastY > 6){
+    nav.classList.add('hidden');
+  } else if (lastY - y > 6){
+    nav.classList.remove('hidden');
+  }
+  lastY = y;
+  ticking = false;
+}
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 8);
+  if (!ticking){ requestAnimationFrame(onScroll); ticking = true; }
 }, {passive:true});
 
 /* ---------- filters ---------- */
@@ -647,11 +705,14 @@ function wireFilters(){
     const f = c.dataset.filter;
     chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
     const items = f === 'all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(f));
-    document.getElementById('archive').innerHTML = items.map(p => `
+    document.getElementById('archive').innerHTML = items.map((p, i) => `
       <a class="work-item reveal in" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <span class="work-title">${p.title.split(' — ')[0]}</span>
+          <div>
+            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span>
+            <span class="work-title">${p.title.split(' — ')[0]}</span>
+          </div>
           <span class="work-cat">${p.year} · ${p.categories.join(', ')}</span>
         </div>
       </a>`).join('');
@@ -713,35 +774,6 @@ function wireForm(){
     }
   });
 }
-
-/* ---------- follow-dot cursor ---------- */
-(function initCursor(){
-  if (matchMedia('(hover: none)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const dot = document.createElement('div');
-  dot.className = 'cursor-dot';
-  dot.setAttribute('aria-hidden','true');
-  document.body.appendChild(dot);
-  let tx = 0, ty = 0, cx = 0, cy = 0, seen = false;
-  window.addEventListener('mousemove', e => {
-    tx = e.clientX; ty = e.clientY;
-    if (!seen) { cx = tx; cy = ty; seen = true; }
-    dot.classList.add('visible');
-  });
-  document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
-  const HOVER_SEL = 'a, button, input, select, textarea, label, [role="button"]';
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.add('hover');
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.remove('hover');
-  });
-  (function tick(){
-    cx += (tx - cx) * 0.2;
-    cy += (ty - cy) * 0.2;
-    dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
-    requestAnimationFrame(tick);
-  })();
-})();
 
 /* ---------- hero rotator ---------- */
 (function initRotator(){
