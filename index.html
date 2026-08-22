@@ -206,10 +206,11 @@
   #view{animation:pageIn .5s var(--ease) both}
   @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  /* ------- cursor follow ------- */
-  .cursor{position:fixed;top:0;left:0;width:80px;height:80px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:500;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;pointer-events:none;z-index:100;transform:translate(-50%,-50%) scale(0);transition:transform .35s var(--ease),opacity .2s;opacity:0;mix-blend-mode:normal}
-  .cursor.on{transform:translate(-50%,-50%) scale(1);opacity:1}
-  @media (hover:none){.cursor{display:none}}
+  /* ------- work item hover arrow ------- */
+  .work-info{position:relative}
+  .work-title{transition:transform .3s var(--ease)}
+  .work-title::after{content:"→";display:inline-block;margin-left:.4rem;opacity:0;transform:translateX(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease);color:var(--fg-muted)}
+  .work-item:hover .work-title::after,.work-item:focus-visible .work-title::after{opacity:1;transform:translateX(0)}
 
   /* ------- placeholder art system ------- */
   .art{--c1:#111;--c2:#eee;--c3:#FF4500;position:relative;width:100%;height:100%;overflow:hidden;background:var(--c2);color:var(--c1);font-family:var(--font-display);isolation:isolate}
@@ -278,8 +279,6 @@
 
 <main id="view" aria-live="polite"></main>
 
-<div class="cursor" id="cursor" aria-hidden="true">View</div>
-
 <footer>
   <span>© 2026 Jonathan James Duah</span>
   <span>Accra, Ghana &nbsp;·&nbsp; <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a></span>
@@ -333,7 +332,7 @@ function viewHome(){
   </div>
   <section class="featured">
     ${featured.map(p => `
-      <a class="work-item reveal" href="#/work/${p.slug}" data-nav data-hover>
+      <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
           <span class="work-title">${p.title.split(' — ')[0]}</span>
@@ -367,7 +366,7 @@ function viewWork(filter='all'){
   </div>
   <section class="archive" id="archive">
     ${items.map(p => `
-      <a class="work-item reveal" href="#/work/${p.slug}" data-nav data-hover>
+      <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
           <span class="work-title">${p.title.split(' — ')[0]}</span>
@@ -546,7 +545,6 @@ function render(){
   window.scrollTo({top:0,behavior:'instant'});
   wireReveal();
   wireFilters();
-  wireHover();
   wireForm();
 }
 window.addEventListener('hashchange', render);
@@ -598,28 +596,14 @@ function wireFilters(){
     chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
     const items = f === 'all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(f));
     document.getElementById('archive').innerHTML = items.map(p => `
-      <a class="work-item reveal in" href="#/work/${p.slug}" data-nav data-hover>
+      <a class="work-item reveal in" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
           <span class="work-title">${p.title.split(' — ')[0]}</span>
           <span class="work-cat">${p.year} · ${p.categories.join(', ')}</span>
         </div>
       </a>`).join('');
-    wireHover();
   }));
-}
-
-/* ---------- cursor follow ---------- */
-const cursor = document.getElementById('cursor');
-let cx = 0, cy = 0, tx = 0, ty = 0;
-window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
-function tick(){ cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18; cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%) scale(${cursor.classList.contains('on')?1:0})`; requestAnimationFrame(tick); }
-requestAnimationFrame(tick);
-function wireHover(){
-  document.querySelectorAll('[data-hover]').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('on'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('on'));
-  });
 }
 
 /* ---------- form ---------- */
