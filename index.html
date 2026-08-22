@@ -162,7 +162,12 @@
   /* ------- about ------- */
   .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
   @media (max-width:800px){.about-grid{grid-template-columns:1fr}}
-  .about-portrait{aspect-ratio:4/5;overflow:hidden;background:var(--bg-elev);border-radius:2px}
+  .about-portrait{aspect-ratio:1/1;max-width:340px;justify-self:start;position:relative;border-radius:50%;overflow:visible;background:transparent;isolation:isolate}
+  .about-portrait::after{content:"";position:absolute;inset:0;background:var(--accent);border-radius:50%;transform:translate(14px,14px);z-index:0;transition:transform .5s var(--ease)}
+  .about-portrait:hover::after{transform:translate(20px,20px)}
+  .about-portrait img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 18%;border:5px solid var(--bg);box-shadow:0 22px 44px -14px rgba(0,0,0,.35),0 6px 14px -6px rgba(0,0,0,.2);transition:box-shadow .5s var(--ease)}
+  html[data-theme="dark"] .about-portrait img{box-shadow:0 22px 44px -12px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04)}
+  @media (max-width:800px){.about-portrait{margin:0 auto;justify-self:center}}
   .about-lead{font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,2.8vw,2.125rem);line-height:1.25;letter-spacing:-.015em;margin:0 0 2rem;max-width:22ch}
   .about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(3rem,6vw,5rem)}
   @media (max-width:700px){.about-cols{grid-template-columns:1fr;gap:2.5rem}}
@@ -415,7 +420,7 @@ function viewAbout(){
   <section class="section container">
     <div class="about-grid">
       <div class="about-portrait reveal">
-        <img src="./images/portrait.jpg" alt="Portrait of Jonathan James Duah" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center"/>
+        <img src="./images/portrait.jpg" alt="Portrait of Jonathan James Duah" loading="lazy"/>
       </div>
       <div>
         <p class="about-lead reveal">Jonathan James Duah is a designer based in Accra, Ghana, working across graphic design, UI/UX, and programming.</p>
