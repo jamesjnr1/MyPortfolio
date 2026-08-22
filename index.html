@@ -41,6 +41,13 @@
   /* ------- base ------- */
   *,*::before,*::after{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .35s var(--ease),color .35s var(--ease)}
+  body{
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 0%, color-mix(in oklab, var(--accent) 7%, transparent), transparent 55%),
+      radial-gradient(ellipse 70% 55% at 100% 100%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+  }
   img,svg{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
   button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
@@ -82,6 +89,19 @@
 
   /* ------- hero (home) ------- */
   .hero{padding:clamp(6rem,14vw,10rem) var(--pad-x) clamp(3rem,6vw,5rem)}
+  @media (min-width:1000px){
+    .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:end}
+  }
+  .hero-side{padding-top:clamp(2rem,4vw,0);text-align:left}
+  @media (min-width:1000px){.hero-side{text-align:right}}
+  .hero-side-label{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:1.25rem;display:block}
+  .rotator{position:relative;height:1.1em;font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.2vw,3.25rem);line-height:1;letter-spacing:-.02em;color:var(--fg);overflow:hidden}
+  .rotator-word{position:absolute;top:0;left:0;right:0;transition:transform .7s var(--ease),opacity .5s var(--ease);transform:translateY(40%);opacity:0;white-space:nowrap}
+  @media (min-width:1000px){.rotator-word{text-align:right}}
+  .rotator-word.in{transform:translateY(0);opacity:1}
+  .rotator-word.out{transform:translateY(-40%);opacity:0}
+  .rotator-word .accent{color:var(--accent)}
+  .rotator-hint{font-size:.75rem;color:var(--fg-subtle);margin-top:1.5rem;display:block}
   .hero-name{font-size:clamp(2.75rem,8vw,7rem);margin:0 0 clamp(1.25rem,2.5vw,2rem)}
   .hero-name .accent{color:var(--accent)}
   .hero-sub{font-family:var(--font-body);font-size:clamp(1.125rem,1.8vw,1.5rem);line-height:1.35;color:var(--fg-muted);font-weight:400;max-width:38ch}
@@ -197,6 +217,8 @@
   /* ------- footer ------- */
   footer{padding:clamp(2rem,4vw,3rem) var(--pad-x);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted)}
   footer a:hover{color:var(--fg)}
+  .footer-socials{display:flex;gap:1.25rem}
+  .footer-socials a{transition:color .2s var(--ease)}
 
   /* ------- scroll reveal ------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -295,6 +317,10 @@
 
 <footer>
   <span>© 2026 Jonathan James Duah</span>
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
+  </div>
   <span>Accra, Ghana &nbsp;·&nbsp; <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a></span>
 </footer>
 
@@ -313,42 +339,6 @@ const PROJECTS = [
    img:'images/triplej.jpg', summary:'Product-range social graphic for a Ghanaian beauty brand, featuring the current shampoo, conditioner and treatment line.',
    deliverables:['Social graphic','Layout','Brand application'], role:'Designer',
    body:'A square post built to work in-feed and as a shareable WhatsApp asset. Two circular product-in-use crops sit against a soft pink field, the product list is packaged in a rounded card, and the contact strip at the bottom carries WhatsApp, address and phone at equal weight so a customer can act on any one of them. Designed around the Triple J magenta without letting it flatten the whole composition.'},
-  {slug:'campus-connect', title:'Campus Connect — Tech Retail Flyer', client:'Campus Connect', year:2026, categories:['poster','social'],
-   img:'images/campus-connect.jpg', summary:'Product flyer for a campus tech accessories vendor, listing everything from AirPods to USB-C dongles in one scrollable sheet.',
-   deliverables:['Flyer design','Product layout','Iconography'], role:'Designer',
-   body:'The brief was a long, unglamorous product list — mouse, cables, chargers, dongles — that still had to read as a single confident offer. A tilted diagonal photo cluster carries the actual merchandise across the sheet, while a solid blue panel holds the list itself in a clean bulleted column so it stays legible at thumbnail size on WhatsApp. Blue and white throughout to keep the piece feeling like tech rather than a market flyer, with the contact number and delivery promise anchored bottom-left where a buyer\'s eye lands last.'},
-  {slug:'hope-college-exchange', title:'Hope College — Exchange Programme', client:'Hope College', year:2026, categories:['poster','event'],
-   img:'images/hope-exchange.jpg', summary:'Announcement poster for a student exchange programme between Hope College and Bischöfliches St. Hildegardis-Gymnasium in Germany.',
-   deliverables:['Poster design','Event branding','Layout'], role:'Designer',
-   body:'A two-country exchange needed to feel like exactly that on the page — the Ghana and Germany flags cross at the top as the visual handshake, while a faded archival shot of the school\'s facade grounds the piece in Hope College itself. The student portrait on the right carries the human side of the programme; the dates sit in a solid blue pill so they\'re the first thing that registers on a shared flyer. A diagonal striped footer in the school\'s gold and blue closes the composition without competing with the crest above.'},
-  {slug:'iala-essentials', title:'Iala\'s Essentials — Everyday Style', client:'Iala\'s Essentials', year:2026, categories:['branding','social'],
-   img:'images/iala-essentials.jpg', summary:'Catalogue-style promotional graphic for a small fashion label\'s everyday-wear line — tops, skirts and sundresses.',
-   deliverables:['Social graphic','Catalogue layout','Brand application'], role:'Designer',
-   body:'Six product photos in soft-edged circles are arranged around a bold pink product list, reading almost like a lookbook page compressed into a single post. The pink-on-pink palette and a serif logotype give the brand a boutique feel rather than a market-stall one, while price point, DM and Snapchat contact sit clearly at the bottom so the graphic still closes the sale. Built to hold up as both a WhatsApp status and a square Instagram post.'},
-  {slug:'tedx-ashesi-offscript', title:'TEDxAshesiUniversity — Off-Script', client:'TEDxAshesiUniversity', year:2026, categories:['poster','event'],
-   img:'images/tedx-offscript.jpg', summary:'Speaker-led event poster for TEDxAshesiUniversity 2026, themed "Off-Script."',
-   deliverables:['Poster design','Event branding','Typography'], role:'Designer',
-   body:'The concept is literal: the poster is built to look like a torn page, with the "Off-Script" wordmark sitting inside the tear and a warm red glow bleeding through the gap toward the speaker\'s hand. Ruled notebook paper as the base texture ties the whole thing back to the idea of departing from a written page, and the black-and-white speaker photograph keeps the focus on the person mid-talk rather than on decoration. TEDx branding is kept small and fixed to the bottom corner, as the format requires.'},
-  {slug:'tedx-ashesi-ripples', title:'TEDxAshesiUniversity — Ripples of Change', client:'TEDxAshesiUniversity', year:2026, categories:['branding','event'],
-   img:'images/tedx-ripples.jpg', summary:'Theme-reveal graphic for TEDxAshesiUniversity, introducing the year\'s theme, "Ripples of Change."',
-   deliverables:['Theme branding','Typography','Event graphic'], role:'Designer',
-   body:'A single idea carries the whole piece: concentric ripple rings run behind a jagged, hand-cut typographic treatment of the theme name, so the title itself looks disturbed by the water it sits on. The theme statement is boxed in TEDx red with a speech-bubble tail pointing to the event credit, keeping the explanation feeling like commentary rather than fine print. Restrained to red, black and white so the graphic reads instantly as TEDx before anything else.'},
-  {slug:'tedx-ashesi-supporter', title:'TEDxAshesiUniversity — Supporter Call', client:'TEDxAshesiUniversity', year:2026, categories:['poster','branding'],
-   img:'images/tedx-supporter.jpg', summary:'Sponsorship and donation call-to-action for TEDxAshesiUniversity 2026, with mobile money and bank transfer details.',
-   deliverables:['Poster design','Layout','Iconography'], role:'Designer',
-   body:'Framed as a taped-up notice on a locker door, the piece borrows the visual language of a campus community board to make a funding ask feel local and immediate rather than corporate. Payment details are set in heavy black numerals against the sponsor names in red, so the two things a supporter actually needs — amount to send and who to send it to — are the loudest elements on the page. Contact channels run along the footer as a consistent strip, matching the rest of the TEDxAshesi asset family.'},
-  {slug:'blueprint-creative-studios', title:'Blueprint Creative Studios — Brand Ad', client:'Blueprint Creative Studios', year:2026, categories:['branding','poster'],
-   img:'images/blueprint-experts.jpg', summary:'Brand advertisement for a creative studio, built around the line "The experts are here."',
-   deliverables:['Ad design','Typography','Brand application'], role:'Designer',
-   body:'A tight half-portrait crop pushes the subject right to the edge of the frame, giving the ad a confident, close-up energy that suits the headline\'s directness. Bold condensed type in white sits against a muted olive field so it reads clearly over the photograph without a box or panel behind it, and the studio wordmark stays small and top-left, letting the message rather than the logo lead. Contact details are set quietly at the base, kept out of the way of the portrait.'},
-  {slug:'asda-bootcamp', title:'Ashesi Speech & Debate — Bootcamp', client:'Ashesi Speech and Debate Club', year:2026, categories:['poster','event'],
-   img:'images/bootcamp.jpg', summary:'Recruitment poster for the "Becoming Better" bootcamp run by the Ashesi Speech and Debate Club.',
-   deliverables:['Poster design','Event branding','Layout'], role:'Designer',
-   body:'A vertical stack of distressed, stencil-cut type spells out BOOTCAMP as the poster\'s centre of gravity, with BECOMING and BETTER running smaller above and beside it so the eye lands on the main word first. A row of candid member photos across the base humanises what could otherwise be a purely typographic poster, and the date block is set inside an illustrated podium — a small illustration that does double duty as both graphic and information card. Deep red-on-black keeps the piece feeling serious without losing energy.'},
-  {slug:'wudc-2027-fundraising', title:'ASDA — WUDC 2027 Fundraising', client:'Ashesi Speech and Debate Association', year:2026, categories:['poster','branding'],
-   img:'images/wudc-fundraising.jpg', summary:'Fundraising poster for the Ashesi Speech and Debate Association\'s delegation to the World Universities Debating Championship 2027 in Ottawa.',
-   deliverables:['Poster design','Infographic layout','Iconography'], role:'Designer',
-   body:'A fundraising ask lives or dies on clarity, so the target figure and both deadlines are set in the largest type on the page, above a coin-jar photograph carrying the Ghana and Canada flags as the visual bridge between the two countries. Two circular member portraits break up the dark panel and put a face to the campaign, while payment details sit in their own pale block at the base so a donor can act without hunting for the number. The WUDC 2027 Ottawa crest anchors the top corner to keep the destination event visible throughout.'},
 ];
 const CATEGORIES = ['all','branding','editorial','poster','event','social'];
 
@@ -362,18 +352,26 @@ function art(p, fit){
 
 /* ---------- views ---------- */
 function viewHome(){
-  const featured = PROJECTS.slice(0, 3);
+  const featured = PROJECTS;
   return `
   <section class="hero">
-    <h1 class="display hero-name reveal">
-      Jonathan James<br/>Duah<span class="accent">.</span>
-    </h1>
-    <p class="hero-sub reveal">Graphic designer, UI/UX designer and product developer based in <em>Accra, Ghana</em> — building brand, print and digital work end to end.</p>
-    <div class="hero-meta reveal">
-      <span>Currently<strong>Open for briefs</strong></span>
-      <span>Based in<strong>Accra, Ghana</strong></span>
-      <span>Practice<strong>Graphic · UI/UX · Product</strong></span>
+    <div class="hero-main">
+      <h1 class="display hero-name reveal">
+        Jonathan James<br/>Duah<span class="accent">.</span>
+      </h1>
+      <p class="hero-sub reveal">Graphic designer, UI/UX designer and product developer based in <em>Accra, Ghana</em> — building brand, print and digital work end to end.</p>
+      <div class="hero-meta reveal">
+        <span>Currently<strong>Open for briefs</strong></span>
+        <span>Based in<strong>Accra, Ghana</strong></span>
+      </div>
     </div>
+    <aside class="hero-side reveal">
+      <span class="hero-side-label">Practice</span>
+      <div class="rotator" id="rotator" aria-live="polite">
+        <span class="rotator-word in">Graphic design<span class="accent">.</span></span>
+      </div>
+      <span class="rotator-hint">Currently taking on new briefs →</span>
+    </aside>
   </section>
 
   <div class="featured-header">
@@ -530,8 +528,10 @@ function viewContact(){
         <p class="lead" style="margin-bottom:2rem">The best briefs start with a paragraph and a deadline. Send both — or just say hi.</p>
         <a href="mailto:jamesduahjonathan@gmail.com" class="contact-email">jamesduahjonathan@gmail.com</a>
         <div class="socials">
-          <a href="tel:+233547955730" aria-label="Phone">+233 54 795 5730</a>
-          <a href="https://wa.me/233547955730" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+          <a href="tel:+233547955730">+233 54 795 5730</a>
+          <a href="https://wa.me/233547955730" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
       <form id="inquiry" class="reveal" novalidate>
@@ -739,6 +739,30 @@ function wireForm(){
     dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
     requestAnimationFrame(tick);
   })();
+})();
+
+/* ---------- hero rotator ---------- */
+(function initRotator(){
+  const WORDS = ['Graphic design', 'UI/UX design', 'Programming'];
+  setInterval(() => {
+    const rot = document.getElementById('rotator');
+    if (!rot) return; // not on home page
+    const current = rot.querySelector('.rotator-word.in');
+    if (!current) return;
+    const currentText = current.firstChild.textContent;
+    const idx = WORDS.indexOf(currentText);
+    const nextIdx = (idx + 1) % WORDS.length;
+    const next = document.createElement('span');
+    next.className = 'rotator-word';
+    next.innerHTML = `${WORDS[nextIdx]}<span class="accent">.</span>`;
+    rot.appendChild(next);
+    requestAnimationFrame(() => {
+      current.classList.remove('in');
+      current.classList.add('out');
+      next.classList.add('in');
+      setTimeout(() => current.remove(), 700);
+    });
+  }, 2600);
 })();
 
 /* ---------- boot ---------- */
