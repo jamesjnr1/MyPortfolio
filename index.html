@@ -212,6 +212,18 @@
   .work-title::after{content:"→";display:inline-block;margin-left:.4rem;opacity:0;transform:translateX(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease);color:var(--fg-muted)}
   .work-item:hover .work-title::after,.work-item:focus-visible .work-title::after{opacity:1;transform:translateX(0)}
 
+  /* ------- follow-dot cursor ------- */
+  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:100;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),background .3s var(--ease),border .3s var(--ease),opacity .2s var(--ease);will-change:transform}
+  .cursor-dot.visible{opacity:1}
+  .cursor-dot.hover{width:40px;height:40px;background:transparent;border:1px solid #fff}
+  @media (hover:none),(prefers-reduced-motion:reduce){.cursor-dot{display:none}}
+
+  /* ------- cursor dot ------- */
+  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;background:#fff;border-radius:50%;pointer-events:none;z-index:200;mix-blend-mode:difference;transform:translate3d(-50%,-50%,0);transition:width .3s var(--ease),height .3s var(--ease);will-change:transform;opacity:0}
+  .cursor-dot.ready{opacity:1}
+  .cursor-dot.hover{width:28px;height:28px}
+  @media (hover:none){.cursor-dot{display:none}}
+
   /* ------- placeholder art system ------- */
   .art{--c1:#111;--c2:#eee;--c3:#FF4500;position:relative;width:100%;height:100%;overflow:hidden;background:var(--c2);color:var(--c1);font-family:var(--font-display);isolation:isolate}
   .art .lg{position:absolute;font-weight:600;letter-spacing:-.04em;line-height:.85}
@@ -278,6 +290,8 @@
 </nav>
 
 <main id="view" aria-live="polite"></main>
+
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 
 <footer>
   <span>© 2026 Jonathan James Duah</span>
@@ -697,6 +711,35 @@ function wireForm(){
     }
   });
 }
+
+/* ---------- follow-dot cursor ---------- */
+(function initCursor(){
+  if (matchMedia('(hover: none)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  dot.setAttribute('aria-hidden','true');
+  document.body.appendChild(dot);
+  let tx = 0, ty = 0, cx = 0, cy = 0, seen = false;
+  window.addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+    if (!seen) { cx = tx; cy = ty; seen = true; }
+    dot.classList.add('visible');
+  });
+  document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
+  const HOVER_SEL = 'a, button, input, select, textarea, label, [role="button"]';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.add('hover');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.remove('hover');
+  });
+  (function tick(){
+    cx += (tx - cx) * 0.2;
+    cy += (ty - cy) * 0.2;
+    dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(tick);
+  })();
+})();
 
 /* ---------- boot ---------- */
 render();
