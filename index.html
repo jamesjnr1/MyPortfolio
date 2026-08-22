@@ -348,7 +348,7 @@ function art(p, fit){
 
 /* ---------- views ---------- */
 function viewHome(){
-  const featured = PROJECTS;
+  const featured = PROJECTS.slice(0, 3);
   return `
   <section class="hero">
     <h1 class="display hero-name reveal">
