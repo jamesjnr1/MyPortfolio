@@ -22,12 +22,15 @@ Single-file static site — no build step. Vanilla HTML, CSS and JavaScript, wit
 
 ```
 MyPortfolio/
-├── index.html          # the entire site
+├── index.html                    # the entire site
 ├── images/
-│   ├── portrait.jpg    # About-page portrait
-│   ├── cenacle.png     # Cenacle Thanksgiving Service poster
-│   ├── pro.png         # Meet With Your MP — Programme Outline
-│   └── triplej.png     # Triple J — Hair Products social graphic
+│   ├── portrait.jpg               # About-page portrait
+│   ├── asda-first-meeting.webp    # ASDA — First Meeting poster
+│   ├── lakeside-game-night.webp   # Lakeside Enterprise — Game Night poster
+│   ├── asda-wudc-2027.webp        # ASDA — WUDC 2027 Send-Off announcement
+│   ├── cenacle.jpg                # Cenacle Thanksgiving Service poster
+│   ├── pro.jpg                    # Meet With Your MP — Programme Outline
+│   └── triplej.jpg                # Triple J — Hair Products social graphic
 └── README.md
 ```
 
