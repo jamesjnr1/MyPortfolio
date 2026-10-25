@@ -369,6 +369,18 @@
 <script>
 /* ---------- data ---------- */
 const PROJECTS = [
+  {slug:'asda-first-meeting', title:'ASDA — First Meeting', client:'Ashesi Speech & Debate Association', year:2026, categories:['poster','event'],
+   img:'images/asda-first-meeting.webp', summary:'Event poster announcing ASDA\'s first general meeting of the academic year.',
+   deliverables:['Poster design','Illustration direction','Event branding'], role:'Designer',
+   body:'A full-bleed vermillion field stages two low-poly speakers mid-exchange across a podium, set against a loose halftone grid and a pair of painterly clouds that keep the red from reading flat. FIRST MEETING runs as oversized display type across two lines, while the practical details — date, room, time — sit inside a single rounded outline so they read as one instruction rather than four separate facts. The Association\'s seal anchors the masthead; the Instagram handle closes the composition at the podium\'s base.'},
+  {slug:'lakeside-game-night', title:'Lakeside Enterprise — Game Night', client:'TU Lakeside Enterprise', year:2026, categories:['poster','event'],
+   img:'images/lakeside-game-night.webp', summary:'Promotional poster for a Lakeside Enterprise game night, staged as a retro arcade cabinet.',
+   deliverables:['Poster design','Art direction','Print layout'], role:'Designer',
+   body:'The whole composition is built as a single arcade cabinet — twin speaker grilles, a CRT-glow screen, a pair of joysticks pushing into frame from below — so the headline doubles as the object advertising it. GAME NIGHT sits in a pixel typeface matched to the screen it lives on, while the logistics (time, price, come-with-friends) switch to a clean rounded sans, keeping the cabinet legible as illustration and the details legible as information. A vertical sponsor credit runs up the left edge the way a cabinet\'s side art would.'},
+  {slug:'asda-wudc-2027', title:'ASDA — WUDC 2027 Send-Off', client:'Ashesi Speech & Debate Association', year:2026, categories:['poster','social'],
+   img:'images/asda-wudc-2027.webp', summary:'Thank-you announcement marking ASDA\'s qualification for WUDC 2027 in Ottawa, crediting the donors who funded the team\'s registration.',
+   deliverables:['Announcement design','Social graphic','Brand application'], role:'Designer',
+   body:'A tightly cropped handshake, lit in the Association\'s house red, carries the emotional weight of the news — gratitude first, announcement second. The headline sits in a heavy condensed grotesk with the destination picked out at greater weight so it reads on a scroll-past, while a short paragraph beneath does the actual thanking. A faded crowd photo behind the masthead ties the news back to the team it concerns, and a rotated "ASDA WUDC 2027" lockup repeats down the left edge for anyone catching the piece only at a glance.'},
   {slug:'cenacle-thanksgiving', title:'Cenacle — Thanksgiving Service', client:'The Cenacle (HC) × Hope College', year:2025, categories:['poster','event'],
    img:'images/cenacle.jpg', summary:'Event poster for The Cenacle\'s annual Thanksgiving Service at Calvary Charismatic Center, in collaboration with Hope College.',
    deliverables:['Poster design','Event branding','Layout'], role:'Designer',
@@ -394,7 +406,7 @@ function art(p, fit){
 
 /* ---------- views ---------- */
 function viewHome(){
-  const featured = PROJECTS;
+  const featured = PROJECTS.slice(0, 3);
   return `
   <section class="hero">
     <div class="hero-main">
@@ -418,7 +430,7 @@ function viewHome(){
   <div class="featured-header">
     <div class="page-kicker reveal" style="flex:1;max-width:none">
       <span>Selected Work</span>
-      <span>${featured.length.toString().padStart(2,'0')} / ${PROJECTS.length.toString().padStart(2,'0')} · 2025</span>
+      <span>${featured.length.toString().padStart(2,'0')} / ${PROJECTS.length.toString().padStart(2,'0')} · ${Math.max(...PROJECTS.map(p => p.year))}</span>
     </div>
     <a href="#/work" class="nav-link reveal" data-nav style="margin-left:2rem;white-space:nowrap">Full archive →</a>
   </div>
