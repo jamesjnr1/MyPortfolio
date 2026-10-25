@@ -45,28 +45,20 @@
   a{color:inherit;text-decoration:none}
   button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
   ::selection{background:var(--accent);color:#fff}
-  ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:transparent}
-  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;border:2px solid transparent;background-clip:content-box;transition:background .3s var(--ease)}
-  ::-webkit-scrollbar-thumb:hover{background:var(--fg-subtle);background-clip:content-box;border:2px solid transparent}
-  html{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 
   /* ------- type ------- */
   .display{font-family:var(--font-display);font-weight:600;letter-spacing:-.03em;line-height:1.02}
   .h1{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:1.1;font-size:clamp(1.75rem,3.2vw,2.75rem)}
   .h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;line-height:1.2;font-size:1.375rem}
-  .lead{font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.5;color:var(--fg-muted);font-weight:400;max-width:36ch;text-wrap:pretty}
-  .meta{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);font-weight:500;font-variant-numeric:tabular-nums}
+  .lead{font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.5;color:var(--fg-muted);font-weight:400;max-width:36ch}
+  .meta{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);font-weight:500}
   .caption{font-size:.8125rem;line-height:1.5;color:var(--fg-muted)}
-  .prose p{max-width:62ch;color:var(--fg);margin:0 0 1.2em;text-wrap:pretty}
+  .prose p{max-width:62ch;color:var(--fg);margin:0 0 1.2em}
   .prose p+p{margin-top:0}
-  .hero-sub{text-wrap:balance}
-  .hero-meta strong,.work-cat,.proj-meta dd{font-variant-numeric:tabular-nums}
 
   /* ------- nav ------- */
-  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);z-index:50;background:color-mix(in oklab, var(--bg) 82%, transparent);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid transparent;transform:translateY(0);transition:border-color .3s var(--ease),transform .45s var(--ease),background .35s var(--ease)}
-  .nav.hidden{transform:translateY(-100%)}
+  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-x);z-index:50;background:color-mix(in oklab, var(--bg) 82%, transparent);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
   .nav.scrolled{border-bottom-color:var(--border)}
   .wordmark{font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:.5rem}
   .wordmark::before{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%;transition:transform .4s var(--ease)}
@@ -75,10 +67,9 @@
   .nav-link{font-size:.8125rem;font-weight:500;letter-spacing:.02em;position:relative;padding:.35rem 0}
   .nav-link::after{content:"";position:absolute;left:0;right:0;bottom:.15rem;height:1px;background:var(--fg);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
   .nav-link:hover::after,.nav-link[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
-  .theme-toggle{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;transition:border-color .2s var(--ease),background .25s var(--ease)}
-  .theme-toggle:hover{border-color:var(--fg);background:var(--bg-elev)}
-  .theme-toggle svg{width:14px;height:14px;transition:transform .5s var(--ease)}
-  .theme-toggle.spin svg{transform:rotate(360deg)}
+  .theme-toggle{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;transition:border-color .2s var(--ease),transform .3s var(--ease)}
+  .theme-toggle:hover{border-color:var(--fg)}
+  .theme-toggle svg{width:14px;height:14px}
   html[data-theme="light"] .icon-sun{display:none}
   html[data-theme="dark"] .icon-moon{display:none}
 
@@ -91,19 +82,6 @@
 
   /* ------- hero (home) ------- */
   .hero{padding:clamp(6rem,14vw,10rem) var(--pad-x) clamp(3rem,6vw,5rem)}
-  @media (min-width:1000px){
-    .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:end}
-  }
-  .hero-side{padding-top:clamp(2rem,4vw,0);text-align:left}
-  @media (min-width:1000px){.hero-side{text-align:right}}
-  .hero-side-label{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:1.25rem;display:block}
-  .rotator{position:relative;height:1.1em;font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.2vw,3.25rem);line-height:1;letter-spacing:-.02em;color:var(--fg);overflow:hidden}
-  .rotator-word{position:absolute;top:0;left:0;right:0;transition:transform .7s var(--ease),opacity .5s var(--ease);transform:translateY(40%);opacity:0;white-space:nowrap}
-  @media (min-width:1000px){.rotator-word{text-align:right}}
-  .rotator-word.in{transform:translateY(0);opacity:1}
-  .rotator-word.out{transform:translateY(-40%);opacity:0}
-  .rotator-word .accent{color:var(--accent)}
-  .rotator-hint{font-size:.75rem;color:var(--fg-subtle);margin-top:1.5rem;display:block}
   .hero-name{font-size:clamp(2.75rem,8vw,7rem);margin:0 0 clamp(1.25rem,2.5vw,2rem)}
   .hero-name .accent{color:var(--accent)}
   .hero-sub{font-family:var(--font-body);font-size:clamp(1.125rem,1.8vw,1.5rem);line-height:1.35;color:var(--fg-muted);font-weight:400;max-width:38ch}
@@ -113,14 +91,10 @@
   .hero-meta strong{display:block;font-family:var(--font-display);font-weight:500;color:var(--fg);font-size:.9375rem;letter-spacing:0;text-transform:none;margin-top:.35rem}
 
   /* ------- featured grid — asymmetric, mixed aspect ratios ------- */
-  .featured-header{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding:0 var(--pad-x);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+  .featured-header{display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad-x);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
   .featured{padding:0 var(--pad-x) clamp(4rem,8vw,6rem);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1rem,1.6vw,1.5rem) clamp(1rem,1.6vw,1.5rem)}
   .work-item{position:relative;display:block;overflow:hidden}
-  .work-index{font-family:var(--font-body);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;display:block;margin-bottom:.35rem;transition:color .3s var(--ease)}
-  .work-item:hover .work-index{color:var(--accent)}
-  .work-cover{position:relative;overflow:hidden;background:var(--bg-elev);border-radius:4px;border:1px solid var(--border);transition:border-color .5s var(--ease),box-shadow .5s var(--ease),transform .5s var(--ease)}
-  .work-item:hover .work-cover{border-color:transparent;box-shadow:0 20px 50px -20px rgba(0,0,0,.18),0 8px 20px -12px rgba(0,0,0,.08);transform:translateY(-4px)}
-  html[data-theme="dark"] .work-item:hover .work-cover{box-shadow:0 20px 50px -18px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06)}
+  .work-cover{position:relative;overflow:hidden;background:var(--bg-elev);border-radius:2px}
   .work-cover .art{width:100%;height:100%;transition:transform .9s var(--ease)}
   .work-item:hover .art{transform:scale(1.03)}
   .work-info{padding-top:1rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
@@ -144,14 +118,11 @@
 
   /* ------- work / archive ------- */
   .archive-head{padding:clamp(4rem,10vw,7rem) var(--pad-x) clamp(1.5rem,3vw,2.5rem)}
-  .archive-head .h1{margin:0 0 .75rem;font-size:clamp(2.5rem,5.5vw,4.5rem);letter-spacing:-.03em;line-height:1}
-  .page-kicker{display:flex;justify-content:space-between;align-items:baseline;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;padding-bottom:1rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
-  .page-kicker span:first-child{color:var(--accent)}
+  .archive-head .h1{margin:0 0 .5rem}
   .filters{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 var(--pad-x) clamp(2rem,4vw,3rem);align-items:center}
   .filter-label{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin-right:.75rem}
-  .chip{font-size:.8125rem;padding:.45rem .9rem;border:1px solid var(--border);border-radius:999px;color:var(--fg-muted);transition:color .25s var(--ease),border-color .25s var(--ease),background-color .3s var(--ease),transform .15s var(--ease);white-space:nowrap}
+  .chip{font-size:.8125rem;padding:.4rem .8rem;border:1px solid var(--border);border-radius:999px;color:var(--fg-muted);transition:all .2s var(--ease);white-space:nowrap}
   .chip:hover{color:var(--fg);border-color:var(--fg)}
-  .chip:active{transform:scale(.96)}
   .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
   .archive{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,2.5rem) clamp(1rem,1.6vw,1.5rem);padding:0 var(--pad-x) clamp(4rem,8vw,6rem)}
   .archive .work-item .work-cover{aspect-ratio:4/5}
@@ -160,21 +131,15 @@
 
   /* ------- project detail ------- */
   .proj-hero{padding:clamp(3rem,7vw,5rem) var(--pad-x) 0}
-  .proj-back{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem;transition:color .25s var(--ease)}
+  .proj-back{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem}
   .proj-back:hover{color:var(--fg)}
-  .proj-kicker{display:flex;justify-content:space-between;align-items:center;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;font-variant-numeric:tabular-nums;padding-bottom:1.25rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border)}
-  .proj-kicker span:first-child{color:var(--accent)}
   .proj-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.025em;line-height:1.05;font-size:clamp(2.25rem,5.5vw,4.5rem);margin:0 0 1rem;max-width:16ch}
   .proj-lead{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;color:var(--fg-muted);max-width:52ch;margin:0 0 clamp(2.5rem,5vw,4rem)}
   .proj-cover{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--bg-elev);border-radius:2px}
-  .proj-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:clamp(3rem,6vw,5rem) var(--pad-x);border-bottom:1px solid var(--border)}
-  .proj-meta > div{padding:0 1.5rem;border-left:1px solid var(--border)}
-  .proj-meta > div:first-child{padding-left:0;border-left:0}
-  .proj-meta dt{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);margin-bottom:.6rem;font-weight:500}
-  .proj-meta dd{margin:0;font-family:var(--font-display);font-weight:500;font-size:.9375rem;line-height:1.35}
-  @media (max-width:700px){.proj-meta{grid-template-columns:repeat(2,1fr);gap:2rem 0}.proj-meta > div{padding:0 1.25rem}.proj-meta > div:nth-child(3){padding-left:0;border-left:0}}
-  .prose-lead{font-size:1.125rem;line-height:1.7;color:var(--fg)}
-  .prose-lead::first-letter{font-family:var(--font-display);font-weight:600;font-size:3.5em;line-height:1;float:left;margin:.05em .1em 0 -.05em;color:var(--fg)}
+  .proj-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:clamp(3rem,6vw,5rem) var(--pad-x);border-bottom:1px solid var(--border)}
+  .proj-meta dt{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin-bottom:.5rem;font-weight:500}
+  .proj-meta dd{margin:0;font-family:var(--font-display);font-weight:500;font-size:.9375rem}
+  @media (max-width:700px){.proj-meta{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
   .proj-body{padding:clamp(4rem,8vw,6rem) var(--pad-x);display:grid;grid-template-columns:1fr;gap:clamp(3rem,6vw,5rem)}
   .proj-block{max-width:1200px;margin:0 auto;width:100%}
   .proj-block.text{max-width:640px}
@@ -204,17 +169,12 @@
   html[data-theme="dark"] .about-portrait img{box-shadow:0 22px 44px -12px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04)}
   @media (max-width:800px){.about-portrait{margin:0 auto;justify-self:center}}
   .about-lead{font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,2.8vw,2.125rem);line-height:1.25;letter-spacing:-.015em;margin:0 0 2rem;max-width:22ch}
-  .about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(4rem,7vw,6rem);padding-top:clamp(3rem,5vw,4rem);border-top:1px solid var(--border)}
-  .about-col{padding:0 clamp(1rem,2vw,2rem);border-left:1px solid var(--border);display:flex;flex-direction:column}
-  .about-col:first-child{padding-left:0;border-left:0}
-  .about-col-kicker{display:flex;justify-content:space-between;align-items:baseline;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;font-variant-numeric:tabular-nums;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);color:var(--fg-subtle)}
-  .about-col-kicker span:first-child{color:var(--accent)}
-  .about-col ul{list-style:none;padding:0;margin:0;font-size:.9375rem}
-  .about-col li{padding:.7rem 0;color:var(--fg);font-family:var(--font-display);font-weight:500;letter-spacing:-.005em;transition:color .25s var(--ease)}
-  .about-col li + li{border-top:1px solid var(--border)}
-  .about-col:hover li{color:var(--fg-muted)}
-  .about-col li:hover{color:var(--fg)}
-  @media (max-width:800px){.about-cols{grid-template-columns:1fr;gap:0;padding-top:2rem}.about-col{padding:0 0 2rem 0;border-left:0;border-bottom:1px solid var(--border);margin-bottom:2rem}.about-col:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}}
+  .about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(3rem,6vw,5rem)}
+  @media (max-width:700px){.about-cols{grid-template-columns:1fr;gap:2.5rem}}
+  .about-cols h3{font-family:var(--font-display);font-weight:500;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);margin:0 0 1rem}
+  .about-cols ul{list-style:none;padding:0;margin:0;font-size:.9375rem}
+  .about-cols li{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--fg-muted)}
+  .about-cols li:last-child{border-bottom:0}
 
   /* ------- contact ------- */
   .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
@@ -227,33 +187,16 @@
   form{display:grid;gap:1.25rem}
   .field{display:flex;flex-direction:column;gap:.4rem}
   .field label{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-muted);font-weight:500}
-  .field input,.field select,.field textarea{font:inherit;color:var(--fg);background-color:transparent;background-image:linear-gradient(var(--accent),var(--accent)),linear-gradient(var(--border),var(--border));background-position:left bottom,left bottom;background-size:0 1px,100% 1px;background-repeat:no-repeat;border:0;padding:.6rem 0;transition:background-size .45s var(--ease)}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;background-size:100% 1px,100% 1px}
+  .field input,.field select,.field textarea{font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--border);padding:.6rem 0;transition:border-color .25s var(--ease)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--accent)}
   .field textarea{resize:vertical;min-height:110px}
-  .submit{align-self:start;font-family:var(--font-display);font-weight:500;font-size:.9375rem;padding:.85rem 1.75rem;border-radius:999px;background:var(--fg);color:var(--bg);display:inline-flex;align-items:center;gap:.5rem;transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);box-shadow:0 4px 14px -6px rgba(0,0,0,.15)}
-  .submit::after{content:"→";display:inline-block;transition:transform .35s var(--ease)}
-  .submit:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.22)}
-  .submit:hover::after{transform:translateX(4px)}
-  .submit:active{transform:translateY(0);box-shadow:0 2px 8px -4px rgba(0,0,0,.15)}
-  html[data-theme="dark"] .submit{box-shadow:0 4px 14px -6px rgba(0,0,0,.5)}
-  html[data-theme="dark"] .submit:hover{box-shadow:0 10px 24px -8px rgba(0,0,0,.7)}
+  .submit{align-self:start;font-family:var(--font-display);font-weight:500;font-size:.9375rem;padding:.85rem 1.75rem;border-radius:999px;background:var(--fg);color:var(--bg);transition:transform .25s var(--ease),background .25s var(--ease)}
+  .submit:hover{transform:translateY(-2px)}
   .form-note{font-size:.75rem;color:var(--fg-subtle);margin-top:.5rem}
 
   /* ------- footer ------- */
-  footer{border-top:1px solid var(--border);color:var(--fg-muted);font-size:.8125rem;line-height:1.55}
-  .footer-inner{padding:clamp(3rem,6vw,5rem) var(--pad-x) clamp(2.5rem,4vw,3.5rem);display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(2rem,4vw,4rem)}
-  @media (max-width:900px){.footer-inner{grid-template-columns:1fr 1fr;gap:2.5rem}}
-  @media (max-width:520px){.footer-inner{grid-template-columns:1fr;gap:2rem}}
-  .footer-col{display:flex;flex-direction:column;gap:.5rem}
-  .footer-brand{font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:-.01em;color:var(--fg);margin-bottom:.35rem}
-  .footer-tag{margin:0;max-width:32ch;color:var(--fg-muted)}
-  .footer-label{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-subtle);font-weight:500;margin-bottom:.4rem}
-  .footer-col a{transition:color .25s var(--ease)}
-  .footer-col a:hover{color:var(--fg)}
-  .footer-meta{color:var(--fg-muted)}
-  .footer-base{padding:1.5rem var(--pad-x);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.6875rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-subtle);font-variant-numeric:tabular-nums}
-  .footer-top{background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;transition:color .25s var(--ease)}
-  .footer-top:hover{color:var(--fg)}
+  footer{padding:clamp(2rem,4vw,3rem) var(--pad-x);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted)}
+  footer a:hover{color:var(--fg)}
 
   /* ------- scroll reveal ------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -268,6 +211,18 @@
   .work-title{transition:transform .3s var(--ease)}
   .work-title::after{content:"→";display:inline-block;margin-left:.4rem;opacity:0;transform:translateX(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease);color:var(--fg-muted)}
   .work-item:hover .work-title::after,.work-item:focus-visible .work-title::after{opacity:1;transform:translateX(0)}
+
+  /* ------- follow-dot cursor ------- */
+  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:100;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),background .3s var(--ease),border .3s var(--ease),opacity .2s var(--ease);will-change:transform}
+  .cursor-dot.visible{opacity:1}
+  .cursor-dot.hover{width:40px;height:40px;background:transparent;border:1px solid #fff}
+  @media (hover:none),(prefers-reduced-motion:reduce){.cursor-dot{display:none}}
+
+  /* ------- cursor dot ------- */
+  .cursor-dot{position:fixed;top:0;left:0;width:10px;height:10px;background:#fff;border-radius:50%;pointer-events:none;z-index:200;mix-blend-mode:difference;transform:translate3d(-50%,-50%,0);transition:width .3s var(--ease),height .3s var(--ease);will-change:transform;opacity:0}
+  .cursor-dot.ready{opacity:1}
+  .cursor-dot.hover{width:28px;height:28px}
+  @media (hover:none){.cursor-dot{display:none}}
 
   /* ------- placeholder art system ------- */
   .art{--c1:#111;--c2:#eee;--c3:#FF4500;position:relative;width:100%;height:100%;overflow:hidden;background:var(--c2);color:var(--c1);font-family:var(--font-display);isolation:isolate}
@@ -336,34 +291,11 @@
 
 <main id="view" aria-live="polite"></main>
 
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-col footer-col-wide">
-      <span class="footer-brand">Jonathan James Duah</span>
-      <p class="footer-tag">Graphic design, UI/UX and product development from Accra, Ghana.</p>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Reach out</span>
-      <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a>
-      <a href="tel:+233547955730">+233 54 795 5730</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Elsewhere</span>
-      <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/233547955730" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-label">Colophon</span>
-      <span class="footer-meta">Set in Poppins &amp; Inter</span>
-      <span class="footer-meta">Built by hand, 2026</span>
-    </div>
-  </div>
-  <div class="footer-base">
-    <span>© 2026 Jonathan James Duah</span>
-    <span>Accra, Ghana</span>
-    <button class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top ↑</button>
-  </div>
+  <span>© 2026 Jonathan James Duah</span>
+  <span>Accra, Ghana &nbsp;·&nbsp; <a href="mailto:jamesduahjonathan@gmail.com">jamesduahjonathan@gmail.com</a></span>
 </footer>
 
 <script>
@@ -393,6 +325,42 @@ const PROJECTS = [
    img:'images/triplej.jpg', summary:'Product-range social graphic for a Ghanaian beauty brand, featuring the current shampoo, conditioner and treatment line.',
    deliverables:['Social graphic','Layout','Brand application'], role:'Designer',
    body:'A square post built to work in-feed and as a shareable WhatsApp asset. Two circular product-in-use crops sit against a soft pink field, the product list is packaged in a rounded card, and the contact strip at the bottom carries WhatsApp, address and phone at equal weight so a customer can act on any one of them. Designed around the Triple J magenta without letting it flatten the whole composition.'},
+  {slug:'campus-connect', title:'Campus Connect — Tech Retail Flyer', client:'Campus Connect', year:2026, categories:['poster','social'],
+   img:'images/campus-connect.jpg', summary:'Product flyer for a campus tech accessories vendor, listing everything from AirPods to USB-C dongles in one scrollable sheet.',
+   deliverables:['Flyer design','Product layout','Iconography'], role:'Designer',
+   body:'The brief was a long, unglamorous product list — mouse, cables, chargers, dongles — that still had to read as a single confident offer. A tilted diagonal photo cluster carries the actual merchandise across the sheet, while a solid blue panel holds the list itself in a clean bulleted column so it stays legible at thumbnail size on WhatsApp. Blue and white throughout to keep the piece feeling like tech rather than a market flyer, with the contact number and delivery promise anchored bottom-left where a buyer\'s eye lands last.'},
+  {slug:'hope-college-exchange', title:'Hope College — Exchange Programme', client:'Hope College', year:2026, categories:['poster','event'],
+   img:'images/hope-exchange.jpg', summary:'Announcement poster for a student exchange programme between Hope College and Bischöfliches St. Hildegardis-Gymnasium in Germany.',
+   deliverables:['Poster design','Event branding','Layout'], role:'Designer',
+   body:'A two-country exchange needed to feel like exactly that on the page — the Ghana and Germany flags cross at the top as the visual handshake, while a faded archival shot of the school\'s facade grounds the piece in Hope College itself. The student portrait on the right carries the human side of the programme; the dates sit in a solid blue pill so they\'re the first thing that registers on a shared flyer. A diagonal striped footer in the school\'s gold and blue closes the composition without competing with the crest above.'},
+  {slug:'iala-essentials', title:'Iala\'s Essentials — Everyday Style', client:'Iala\'s Essentials', year:2026, categories:['branding','social'],
+   img:'images/iala-essentials.jpg', summary:'Catalogue-style promotional graphic for a small fashion label\'s everyday-wear line — tops, skirts and sundresses.',
+   deliverables:['Social graphic','Catalogue layout','Brand application'], role:'Designer',
+   body:'Six product photos in soft-edged circles are arranged around a bold pink product list, reading almost like a lookbook page compressed into a single post. The pink-on-pink palette and a serif logotype give the brand a boutique feel rather than a market-stall one, while price point, DM and Snapchat contact sit clearly at the bottom so the graphic still closes the sale. Built to hold up as both a WhatsApp status and a square Instagram post.'},
+  {slug:'tedx-ashesi-offscript', title:'TEDxAshesiUniversity — Off-Script', client:'TEDxAshesiUniversity', year:2026, categories:['poster','event'],
+   img:'images/tedx-offscript.jpg', summary:'Speaker-led event poster for TEDxAshesiUniversity 2026, themed "Off-Script."',
+   deliverables:['Poster design','Event branding','Typography'], role:'Designer',
+   body:'The concept is literal: the poster is built to look like a torn page, with the "Off-Script" wordmark sitting inside the tear and a warm red glow bleeding through the gap toward the speaker\'s hand. Ruled notebook paper as the base texture ties the whole thing back to the idea of departing from a written page, and the black-and-white speaker photograph keeps the focus on the person mid-talk rather than on decoration. TEDx branding is kept small and fixed to the bottom corner, as the format requires.'},
+  {slug:'tedx-ashesi-ripples', title:'TEDxAshesiUniversity — Ripples of Change', client:'TEDxAshesiUniversity', year:2026, categories:['branding','event'],
+   img:'images/tedx-ripples.jpg', summary:'Theme-reveal graphic for TEDxAshesiUniversity, introducing the year\'s theme, "Ripples of Change."',
+   deliverables:['Theme branding','Typography','Event graphic'], role:'Designer',
+   body:'A single idea carries the whole piece: concentric ripple rings run behind a jagged, hand-cut typographic treatment of the theme name, so the title itself looks disturbed by the water it sits on. The theme statement is boxed in TEDx red with a speech-bubble tail pointing to the event credit, keeping the explanation feeling like commentary rather than fine print. Restrained to red, black and white so the graphic reads instantly as TEDx before anything else.'},
+  {slug:'tedx-ashesi-supporter', title:'TEDxAshesiUniversity — Supporter Call', client:'TEDxAshesiUniversity', year:2026, categories:['poster','branding'],
+   img:'images/tedx-supporter.jpg', summary:'Sponsorship and donation call-to-action for TEDxAshesiUniversity 2026, with mobile money and bank transfer details.',
+   deliverables:['Poster design','Layout','Iconography'], role:'Designer',
+   body:'Framed as a taped-up notice on a locker door, the piece borrows the visual language of a campus community board to make a funding ask feel local and immediate rather than corporate. Payment details are set in heavy black numerals against the sponsor names in red, so the two things a supporter actually needs — amount to send and who to send it to — are the loudest elements on the page. Contact channels run along the footer as a consistent strip, matching the rest of the TEDxAshesi asset family.'},
+  {slug:'blueprint-creative-studios', title:'Blueprint Creative Studios — Brand Ad', client:'Blueprint Creative Studios', year:2026, categories:['branding','poster'],
+   img:'images/blueprint-experts.jpg', summary:'Brand advertisement for a creative studio, built around the line "The experts are here."',
+   deliverables:['Ad design','Typography','Brand application'], role:'Designer',
+   body:'A tight half-portrait crop pushes the subject right to the edge of the frame, giving the ad a confident, close-up energy that suits the headline\'s directness. Bold condensed type in white sits against a muted olive field so it reads clearly over the photograph without a box or panel behind it, and the studio wordmark stays small and top-left, letting the message rather than the logo lead. Contact details are set quietly at the base, kept out of the way of the portrait.'},
+  {slug:'asda-bootcamp', title:'Ashesi Speech & Debate — Bootcamp', client:'Ashesi Speech and Debate Club', year:2026, categories:['poster','event'],
+   img:'images/bootcamp.jpg', summary:'Recruitment poster for the "Becoming Better" bootcamp run by the Ashesi Speech and Debate Club.',
+   deliverables:['Poster design','Event branding','Layout'], role:'Designer',
+   body:'A vertical stack of distressed, stencil-cut type spells out BOOTCAMP as the poster\'s centre of gravity, with BECOMING and BETTER running smaller above and beside it so the eye lands on the main word first. A row of candid member photos across the base humanises what could otherwise be a purely typographic poster, and the date block is set inside an illustrated podium — a small illustration that does double duty as both graphic and information card. Deep red-on-black keeps the piece feeling serious without losing energy.'},
+  {slug:'wudc-2027-fundraising', title:'ASDA — WUDC 2027 Fundraising', client:'Ashesi Speech and Debate Association', year:2026, categories:['poster','branding'],
+   img:'images/wudc-fundraising.jpg', summary:'Fundraising poster for the Ashesi Speech and Debate Association\'s delegation to the World Universities Debating Championship 2027 in Ottawa.',
+   deliverables:['Poster design','Infographic layout','Iconography'], role:'Designer',
+   body:'A fundraising ask lives or dies on clarity, so the target figure and both deadlines are set in the largest type on the page, above a coin-jar photograph carrying the Ghana and Canada flags as the visual bridge between the two countries. Two circular member portraits break up the dark panel and put a face to the campaign, while payment details sit in their own pale block at the base so a donor can act without hunting for the number. The WUDC 2027 Ottawa crest anchors the top corner to keep the destination event visible throughout.'},
 ];
 const CATEGORIES = ['all','branding','editorial','poster','event','social'];
 
@@ -409,40 +377,27 @@ function viewHome(){
   const featured = PROJECTS.slice(0, 3);
   return `
   <section class="hero">
-    <div class="hero-main">
-      <h1 class="display hero-name reveal">
-        Jonathan James<br/>Duah<span class="accent">.</span>
-      </h1>
-      <p class="hero-sub reveal">Graphic designer, UI/UX designer and product developer based in <em>Accra, Ghana</em> — building brand, print and digital work end to end.</p>
-      <div class="hero-meta reveal">
-        <span>Currently<strong>Open for briefs</strong></span>
-        <span>Designs?<strong>Upon Request</strong></span>
-      </div>
+    <h1 class="display hero-name reveal">
+      Jonathan James<br/>Duah<span class="accent">.</span>
+    </h1>
+    <p class="hero-sub reveal">Graphic designer, UI/UX designer and product developer based in <em>Accra, Ghana</em> — building brand, print and digital work end to end.</p>
+    <div class="hero-meta reveal">
+      <span>Currently<strong>Open for briefs</strong></span>
+      <span>Based in<strong>Accra, Ghana</strong></span>
+      <span>Practice<strong>Graphic · UI/UX · Product</strong></span>
     </div>
-    <aside class="hero-side reveal">
-      <span class="hero-side-label">I'm Currently Learning</span>
-      <div class="rotator" id="rotator" aria-live="polite">
-        <span class="rotator-word in">Graphic design<span class="accent">.</span></span>
-      </div>
-    </aside>
   </section>
 
   <div class="featured-header">
-    <div class="page-kicker reveal" style="flex:1;max-width:none">
-      <span>Selected Work</span>
-      <span>${featured.length.toString().padStart(2,'0')} / ${PROJECTS.length.toString().padStart(2,'0')} · ${Math.max(...PROJECTS.map(p => p.year))}</span>
-    </div>
-    <a href="#/work" class="nav-link reveal" data-nav style="margin-left:2rem;white-space:nowrap">Full archive →</a>
+    <span class="meta reveal">Selected work · ${Math.max(...PROJECTS.map(p => p.year))}</span>
+    <a href="#/work" class="nav-link reveal" data-nav>Full archive →</a>
   </div>
   <section class="featured">
-    ${featured.map((p, i) => `
+    ${featured.map(p => `
       <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <div>
-            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(featured.length).padStart(2,'0')}</span>
-            <span class="work-title">${p.title.split(' — ')[0]}</span>
-          </div>
+          <span class="work-title">${p.title.split(' — ')[0]}</span>
           <span class="work-cat">${p.categories[0]}</span>
         </div>
       </a>`).join('')}
@@ -454,7 +409,7 @@ function viewHome(){
       <p class="about-lead reveal">A studio of one, working with a rotating cast of collaborators when the brief needs more hands.</p>
       <div class="reveal">
         <p class="prose">I take on a small number of projects a year — usually four to six — so that each one gets the attention its brief deserves. Most work begins with a conversation, then a short written proposal.</p>
-        <a href="#/contact" class="submit" data-nav style="margin-top:1rem"><span>Start a conversation</span></a>
+        <a href="#/contact" class="submit" data-nav style="margin-top:1rem">Start a conversation</a>
       </div>
     </div>
   </section>`;
@@ -464,26 +419,19 @@ function viewWork(filter='all'){
   const items = filter==='all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(filter));
   return `
   <header class="archive-head">
-    <div class="page-kicker reveal">
-      <span>Portfolio</span>
-      <span>${PROJECTS.length.toString().padStart(2,'0')} projects</span>
-    </div>
-    <h1 class="h1 reveal">Selected Work.</h1>
-    <p class="lead reveal">A curated archive of client and self-initiated projects.</p>
+    <h1 class="h1 reveal">Work</h1>
+    <p class="lead reveal">A running archive of client and self-initiated projects. Filter by discipline.</p>
   </header>
   <div class="filters" role="group" aria-label="Filter by discipline">
     <span class="filter-label">Filter</span>
     ${CATEGORIES.map(c => `<button class="chip" data-filter="${c}" aria-pressed="${c===filter}">${c[0].toUpperCase()+c.slice(1)}</button>`).join('')}
   </div>
   <section class="archive" id="archive">
-    ${items.map((p, i) => `
+    ${items.map(p => `
       <a class="work-item reveal" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <div>
-            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span>
-            <span class="work-title">${p.title.split(' — ')[0]}</span>
-          </div>
+          <span class="work-title">${p.title.split(' — ')[0]}</span>
           <span class="work-cat">${p.year} · ${p.categories.join(', ')}</span>
         </div>
       </a>`).join('')}
@@ -500,10 +448,6 @@ function viewProject(slug){
   <article>
     <header class="proj-hero">
       <a href="#/work" class="proj-back" data-nav>← All work</a>
-      <div class="proj-kicker reveal">
-        <span>Case study</span>
-        <span>${String(i+1).padStart(2,'0')} / ${String(PROJECTS.length).padStart(2,'0')}</span>
-      </div>
       <h1 class="proj-title reveal">${p.title}</h1>
       <p class="proj-lead reveal">${p.summary}</p>
       <div class="proj-cover reveal" style="aspect-ratio:auto;max-height:80vh;display:flex;justify-content:center">${art(p,'contain')}</div>
@@ -516,7 +460,7 @@ function viewProject(slug){
     </dl>
     <div class="proj-body">
       <div class="proj-block text reveal">
-        <p class="prose prose-lead">${p.body}</p>
+        <p class="prose">${p.body}</p>
       </div>
     </div>
     <nav class="proj-nav" aria-label="Project navigation">
@@ -535,10 +479,6 @@ function viewProject(slug){
 function viewAbout(){
   return `
   <section class="section container">
-    <div class="page-kicker reveal" style="max-width:none">
-      <span>About</span>
-      <span>03 / 04</span>
-    </div>
     <div class="about-grid">
       <div class="about-portrait reveal">
         <img src="./images/portrait.jpg" alt="Portrait of Jonathan James Duah" loading="lazy"/>
@@ -553,8 +493,8 @@ function viewAbout(){
     </div>
 
     <div class="about-cols reveal">
-      <div class="about-col">
-        <div class="about-col-kicker"><span>01</span><span>Services</span></div>
+      <div>
+        <h3>Services</h3>
         <ul>
           <li>Graphic design</li>
           <li>Poster &amp; event design</li>
@@ -564,8 +504,8 @@ function viewAbout(){
           <li>Social &amp; digital graphics</li>
         </ul>
       </div>
-      <div class="about-col">
-        <div class="about-col-kicker"><span>02</span><span>Tools</span></div>
+      <div>
+        <h3>Tools</h3>
         <ul>
           <li>Figma</li>
           <li>Adobe Photoshop</li>
@@ -575,8 +515,8 @@ function viewAbout(){
           <li>Framer</li>
         </ul>
       </div>
-      <div class="about-col">
-        <div class="about-col-kicker"><span>03</span><span>Currently</span></div>
+      <div>
+        <h3>Currently</h3>
         <ul>
           <li>Open for briefs</li>
           <li>Based in Accra, Ghana</li>
@@ -588,7 +528,7 @@ function viewAbout(){
 
     <div style="margin-top:clamp(4rem,8vw,6rem);text-align:center" class="reveal">
       <p class="about-lead" style="margin:0 auto 2rem">Have a project? Let's talk.</p>
-      <a href="#/contact" class="submit" data-nav><span>Start a conversation</span></a>
+      <a href="#/contact" class="submit" data-nav>Start a conversation</a>
     </div>
   </section>`;
 }
@@ -596,20 +536,14 @@ function viewAbout(){
 function viewContact(){
   return `
   <section class="section container">
-    <div class="page-kicker reveal" style="max-width:none">
-      <span>Get in touch</span>
-      <span>04 / 04</span>
-    </div>
     <div class="contact-wrap">
       <div class="reveal">
-        <h1 class="contact-h">Let's<br/>work together<span class="accent">.</span></h1>
+        <h1 class="contact-h">Let's<br/>work together.</h1>
         <p class="lead" style="margin-bottom:2rem">The best briefs start with a paragraph and a deadline. Send both — or just say hi.</p>
         <a href="mailto:jamesduahjonathan@gmail.com" class="contact-email">jamesduahjonathan@gmail.com</a>
         <div class="socials">
-          <a href="tel:+233547955730">+233 54 795 5730</a>
-          <a href="https://wa.me/233547955730" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="https://www.linkedin.com/in/jonathan-james-duah" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://instagram.com/james.duahjnr" target="_blank" rel="noopener">Instagram</a>
+          <a href="tel:+233547955730" aria-label="Phone">+233 54 795 5730</a>
+          <a href="https://wa.me/233547955730" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
         </div>
       </div>
       <form id="inquiry" class="reveal" novalidate>
@@ -638,7 +572,7 @@ function viewContact(){
           <textarea id="f-msg" required></textarea>
         </div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"/>
-        <button class="submit" type="submit"><span>Send inquiry</span></button>
+        <button class="submit" type="submit">Send inquiry</button>
         <p class="form-note" id="form-note" aria-live="polite">Your email is only used to reply to you.</p>
       </form>
     </div>
@@ -691,8 +625,6 @@ themeBtn.addEventListener('click', () => {
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
-  themeBtn.classList.add('spin');
-  setTimeout(() => themeBtn.classList.remove('spin'), 500);
 });
 
 /* ---------- scroll reveal ---------- */
@@ -711,24 +643,10 @@ function wireReveal(){
   els.forEach(el => io.observe(el));
 }
 
-/* ---------- nav shadow + hide on scroll ---------- */
+/* ---------- nav shadow on scroll ---------- */
 const nav = document.getElementById('nav');
-let lastY = 0, ticking = false;
-function onScroll(){
-  const y = window.scrollY;
-  nav.classList.toggle('scrolled', y > 8);
-  if (y < 80){
-    nav.classList.remove('hidden');
-  } else if (y - lastY > 6){
-    nav.classList.add('hidden');
-  } else if (lastY - y > 6){
-    nav.classList.remove('hidden');
-  }
-  lastY = y;
-  ticking = false;
-}
 window.addEventListener('scroll', () => {
-  if (!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  nav.classList.toggle('scrolled', window.scrollY > 8);
 }, {passive:true});
 
 /* ---------- filters ---------- */
@@ -739,14 +657,11 @@ function wireFilters(){
     const f = c.dataset.filter;
     chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
     const items = f === 'all' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(f));
-    document.getElementById('archive').innerHTML = items.map((p, i) => `
+    document.getElementById('archive').innerHTML = items.map(p => `
       <a class="work-item reveal in" href="#/work/${p.slug}" data-nav>
         <div class="work-cover">${art(p)}</div>
         <div class="work-info">
-          <div>
-            <span class="work-index">${String(i+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span>
-            <span class="work-title">${p.title.split(' — ')[0]}</span>
-          </div>
+          <span class="work-title">${p.title.split(' — ')[0]}</span>
           <span class="work-cat">${p.year} · ${p.categories.join(', ')}</span>
         </div>
       </a>`).join('');
@@ -774,7 +689,7 @@ function wireForm(){
     }
     submitBtn.disabled = true;
     submitBtn.style.opacity = '.6';
-    submitBtn.querySelector('span').textContent = 'Sending…';
+    submitBtn.textContent = 'Sending…';
     note.textContent = '';
     try {
       const res = await fetch('https://formsubmit.co/ajax/jamesduahjonathan@gmail.com', {
@@ -804,33 +719,38 @@ function wireForm(){
     } finally {
       submitBtn.disabled = false;
       submitBtn.style.opacity = '';
-      submitBtn.querySelector('span').textContent = 'Send inquiry';
+      submitBtn.textContent = 'Send inquiry';
     }
   });
 }
 
-/* ---------- hero rotator ---------- */
-(function initRotator(){
-  const WORDS = ['Graphic design', 'UI/UX design', 'Programming'];
-  setInterval(() => {
-    const rot = document.getElementById('rotator');
-    if (!rot) return; // not on home page
-    const current = rot.querySelector('.rotator-word.in');
-    if (!current) return;
-    const currentText = current.firstChild.textContent;
-    const idx = WORDS.indexOf(currentText);
-    const nextIdx = (idx + 1) % WORDS.length;
-    const next = document.createElement('span');
-    next.className = 'rotator-word';
-    next.innerHTML = `${WORDS[nextIdx]}<span class="accent">.</span>`;
-    rot.appendChild(next);
-    requestAnimationFrame(() => {
-      current.classList.remove('in');
-      current.classList.add('out');
-      next.classList.add('in');
-      setTimeout(() => current.remove(), 700);
-    });
-  }, 2600);
+/* ---------- follow-dot cursor ---------- */
+(function initCursor(){
+  if (matchMedia('(hover: none)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  dot.setAttribute('aria-hidden','true');
+  document.body.appendChild(dot);
+  let tx = 0, ty = 0, cx = 0, cy = 0, seen = false;
+  window.addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+    if (!seen) { cx = tx; cy = ty; seen = true; }
+    dot.classList.add('visible');
+  });
+  document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
+  const HOVER_SEL = 'a, button, input, select, textarea, label, [role="button"]';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.add('hover');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest && e.target.closest(HOVER_SEL)) dot.classList.remove('hover');
+  });
+  (function tick(){
+    cx += (tx - cx) * 0.2;
+    cy += (ty - cy) * 0.2;
+    dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(tick);
+  })();
 })();
 
 /* ---------- boot ---------- */
