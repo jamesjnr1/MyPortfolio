@@ -30,7 +30,16 @@ MyPortfolio/
 │   ├── asda-wudc-2027.webp        # ASDA — WUDC 2027 Send-Off announcement
 │   ├── cenacle.jpg                # Cenacle Thanksgiving Service poster
 │   ├── pro.jpg                    # Meet With Your MP — Programme Outline
-│   └── triplej.jpg                # Triple J — Hair Products social graphic
+│   ├── triplej.jpg                # Triple J — Hair Products social graphic
+│   ├── campus-connect.jpg         # Campus Connect — Tech Retail Flyer
+│   ├── hope-exchange.jpg          # Hope College — Exchange Programme
+│   ├── iala-essentials.jpg        # Iala's Essentials — Everyday Style
+│   ├── tedx-offscript.jpg         # TEDxAshesiUniversity — Off-Script
+│   ├── tedx-ripples.jpg           # TEDxAshesiUniversity — Ripples of Change
+│   ├── tedx-supporter.jpg         # TEDxAshesiUniversity — Supporter Call
+│   ├── blueprint-experts.jpg      # Blueprint Creative Studios — Brand Ad
+│   ├── bootcamp.jpg               # ASDA — Bootcamp
+│   └── wudc-fundraising.jpg       # ASDA — WUDC 2027 Fundraising
 └── README.md
 ```
 
